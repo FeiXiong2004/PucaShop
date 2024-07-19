@@ -1,0 +1,42 @@
+/* Footer */
+.footer_page {
+    background-color: #343a40;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  
+}
+
+.footer_page h5 {
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.footer_page p {
+    color: #fff;
+}
+
+.footer_page a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.footer_page a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer_page .fa {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.footer_page hr {
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer_page .row.align-items-center {
+    margin-top: 20px;
+}

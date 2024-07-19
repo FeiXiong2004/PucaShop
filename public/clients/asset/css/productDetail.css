@@ -1,0 +1,154 @@
+/* productDetail.css */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: 500px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.product-details {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    color: #f90;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.product-description {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.product-options {
+    margin-bottom: 15px;
+}
+
+.product-options label {
+    font-weight: bold;
+}
+
+.product-options select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-quantity {
+    margin-bottom: 15px;
+}
+
+.product-quantity label {
+    font-weight: bold;
+}
+
+.product-quantity input[type="number"] {
+    width: 70px;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-warning {
+    background-color: #f90;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #e68000;
+}
+
+.shipping-info {
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+}
+
+.related-products {
+    margin-top: 30px;
+}
+
+.related-products h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.related-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.related-product img {
+    max-width: 80px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.related-product p {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .product-details {
+        padding: 15px;
+    }
+    .product-title {
+        font-size: 20px;
+    }
+    .product-price {
+        font-size: 18px;
+    }
+    .related-product img {
+        max-width: 60px;
+    }
+}
