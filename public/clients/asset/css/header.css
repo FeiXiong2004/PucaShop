@@ -63,10 +63,78 @@
 .list_header_icon {
     position: absolute;
     top: 10px;
-    right: 30px;
+    right: 10%;
     display: flex;
+    align-items: center;
     gap: 20px;
 }
+/* Dropdown menu container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position the menu below the icon */
+   left: -50%;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    padding: 0; /* Remove padding for consistent spacing */
+    border-radius: 4px;
+    width: 200px;
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+}
+
+/* Dropdown menu list item */
+.dropdown-menu li {
+    border-bottom: 1px solid #eaeaea; /* Add separator between items */
+    
+}
+
+/* Last item without border */
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+/* Dropdown menu link styling */
+.dropdown-menu a {
+    display: block;
+    font-size: 16px !important;
+    height: 90px !important;
+    padding: 10px 5px; /* Add padding for clickable area */
+    text-decoration: none;
+    color: black;
+    font-size: 0.9em; /* Adjust font size for menu items */
+}
+
+/* Hover effect for dropdown links */
+.dropdown-menu a:hover {
+    background-color: #f0f0f0; /* Light grey hover background */
+}
+
+/* Show the dropdown when hovering over the container */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Icon link styling */
+.list_header_icon a {
+    color: black;
+    font-size: 1.2em; /* Adjusted icon size */
+    text-decoration: none;
+    position: relative;
+}
+
+.list_header_icon a:hover {
+    color: gray; /* Change icon color on hover */
+}
+
+
 
 .list_header_icon a {
     color: black;
@@ -79,31 +147,37 @@
     color: gray;
 }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 10px;
-    width: 150px;
-    z-index: 1000;
-}
+
 
 .list_header_icon .a:hover .dropdown-menu {
     display: block;
 }
 
 .dropdown-menu a {
-    display: block;
+   
     color: black;
     text-decoration: none;
 }
 
 .dropdown-menu a:hover {
     background-color: #f8f9fa;
+}
+@media (max-width: 768px) {
+    .header_page_logo {
+        width: 30%;
+    }
+
+    .header_page_menu {
+        width: 70%;
+    }
+
+    .list_header_menu li > a {
+        font-size: 0.8em;
+    }
+
+    .list_header_icon a {
+        font-size: 1em;
+    }
 }
 
 /* End Header */

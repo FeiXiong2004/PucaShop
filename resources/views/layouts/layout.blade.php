@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('clients/asset') }}/css/footer.css">
     @yield('libs-css')
 </head>
+
 <body>
     <div class="wrapper">
         <!-- Header -->
@@ -29,20 +31,37 @@
                     <li class="list_menu_item"><a href="">Liên hệ</a></li>
                 </ul>
                 <div class="list_header_icon">
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
+                    <div class="dropdown">
+                        <a href="login.html">
+                            <i class="fa fa-user"></i>
+                        </a>
                         <div class="dropdown-menu">
-                            <a href="login.html">Đăng nhập</a>
-                            <a href="register.html">Đăng ký</a>
-                         </div>
-                    </a>
+                            @guest
+                                <li><a href="{{ route('account') }}">Đăng nhập</a></li>
+                                <li><a href="{{ route('account') }}">Đăng ký</a></li>
+                            @endguest
+                            @auth
+
+                                <li style="color:red">
+                                    Welcome: {{ Auth::user()->fullname }}!!!
+                                </li>
+                                @if (Auth::user()->role === 'admin')
+                                    <li><a href="{{ route('admin.dashboard') }}">Đăng nhập admin</a></li>
+                                @endif
+                                <li><a href="login.html">Cập nhật tài khoản</a></li>
+                                <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                            @endauth
+
+
+                        </div>
+                    </div>
                     <a href="">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </div>
             </div>
         </header>
-       
+
         @yield('content')
         <!-- Footer -->
         <footer class="footer_page bg-dark text-white pt-5 pb-4">
@@ -110,8 +129,9 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 @yield('libs-script')
+
 </html>

@@ -27,3 +27,19 @@ document.addEventListener('DOMContentLoaded', function () {
         nextButton.click();
     }, 3000); // Thay đổi 3000 theo khoảng thời gian mong muốn
 });
+
+
+// Add a simple toggle for dropdown (if not using CSS hover)
+document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    dropdown.addEventListener('click', function(event) {
+        event.stopPropagation();
+        this.querySelector('.dropdown-menu').classList.toggle('show');
+    });
+});
+
+document.addEventListener('click', function() {
+    document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+        menu.classList.remove('show');
+    });
+});
+

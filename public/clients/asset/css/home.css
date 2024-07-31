@@ -59,7 +59,7 @@ body {
     padding: 10px;
     cursor: pointer;
     font-size: 1.5em;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .slide_action_pre {
