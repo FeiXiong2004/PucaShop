@@ -41,14 +41,14 @@
                                 <li><a href="{{ route('account') }}">Đăng ký</a></li>
                             @endguest
                             @auth
-
-                                <li style="color:red">
-                                    Welcome: {{ Auth::user()->fullname }}!!!
+                           
+                                <li style="color:red ; font-weight:bold ">
+                                  {{ Auth::user()->fullname }} !!!
                                 </li>
                                 @if (Auth::user()->role === 'admin')
                                     <li><a href="{{ route('admin.dashboard') }}">Đăng nhập admin</a></li>
                                 @endif
-                                <li><a href="login.html">Cập nhật tài khoản</a></li>
+                                <li><a  href="{{ route('showAccount', Auth::user()->id) }}">Cập nhật tài khoản</a></li>
                                 <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                             @endauth
 

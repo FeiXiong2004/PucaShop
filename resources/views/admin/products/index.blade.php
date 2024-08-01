@@ -1,5 +1,5 @@
-@extends('admin.layout')
-@section('title', 'Danh sách sản phẩm')
+@extends('admin.layouts.layout')
+@section('title', 'Product List')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">DataTables</li>
                         </ol>
                     </div>
@@ -27,70 +27,64 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Danh sách sản phẩm</h3>
+                                <h3 class="card-title">Product List</h3>
                             </div>
-                            <!-- /.card-header -->
+                            <h1></h1>
+                            @if (session('message'))
+                                <h2 class="alert alert-light">
+                                    {{ session('message') }}
+                                </h2>
+                            @endif
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#ID</th>
-                                            <th>Code</th>
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Price</th>
-                                            <th>Sale</th>
-                                            <th>Biến thể</th>
-                                            <th>Description</th>
-                                            <th>Material</th>
-                                            <th>Category</th>
-                                            <th>Brand</th>
-                                            <th>
-                                                <a href="{{ route('admin.products.create') }}" 
-                                                class="btn btn-primary">Thêm
+                                            <th scope="col">#ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">
+                                                <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
+                                                    Thêm mới
                                                 </a>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $stt => $item)
+                                        @foreach ($productsAdmin as $pro)
                                             <tr>
-                                                <td>{{ $stt + 1 }}</td>
-                                                <td>{{ $item->code }}</td>
-                                                <td>{{ $item->name }}</td>
+                                                <th scope="row">{{ $pro->id }}</th>
+                                                <td>{{ $pro->name }}</td>
+                                                <td>{{ $pro->price }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/' ) .'/' . $item->image}}" alt="" srcset="" width="100">
+                                                    <img src="{{ asset('/storage/') . '/' . $pro->image }}" width="60"
+                                                        alt="">
                                                 </td>
-                                                <td>{{ $item->price }}</td>
-                                                <td>{{ $item->sale_price }}</td>
-                                                <td>
-                                                    @foreach ($item->variants as $variant) 
-                                                        {{ $variant->color->name }} -
-                                                        {{ $variant->size->name }} -
-                                                        {{ $variant->quantity }} <br>
-                                                    @endforeach
-                                                </td>
-                                                <td>{!! $item->description !!}</td>
-                                                <td>{!! $item->material !!}</td>
-                                                <td>{{ $item->category->name }}</td>
-                                                <td>{{ $item->brand->name }}</td>
-                                                <td class="d-flex ">
-                                                    <a href="{{ route('admin.products.edit', $item) }}" class="btn btn-primary mr-3">Edit</a>
-                                                    <form action="{{ route('admin.products.delete', $item) }}" method="post">
+                                                <td>{{ $pro->quantity }}</td>
+                                                <td>{{ $pro->description }}</td>
+                                                <td>{{ $pro->category->name }}</td>
+                                                <td class="d-flex">
+                                                    <a href="{{ route('admin.product.edit', $pro->id) }}"
+                                                        class="btn btn-primary me-1">Edit</a>
+                                                    <a href="{{ route('admin.product.show', $pro->id) }}"
+                                                        class="btn btn-warning me-1">Show</a>
+                                                    <form action="{{ route('admin.product.destroy', $pro->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button onclick="return confirm('Bạn có muốn xóa không')"
+                                                            type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
                                         @endforeach
 
                                     </tbody>
-
                                 </table>
+                                {{ $productsAdmin->links() }}
                             </div>
-                            <!-- /.card-body -->
-                            {{ $products->links() }}
                         </div>
                         <!-- /.card -->
                     </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'Product Create')
+@section('title', 'User Update')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product Create</h1>
+                        <h1>User Update</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -27,45 +27,49 @@
                     <div class="card card-outline card-info">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Product Create
+                                User Update
                             </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+
+                            <form action="{{ route('admin.user.update', $user->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" name="fullname" class="form-control"
+                                        value="{{ $user->fullname }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control">
+                                    <label class="form-label">User Name</label>
+                                    <input type="text" name="username" class="form-control"
+                                        value="{{ $user->username }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Image</label>
-                                    <input class="form-control" type="file" id="formFile" name="image">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Hình</label>
+                                    <input class="form-control" type="file" id="formFile" name="avatar">
+                                    <br><img src="{{ asset('storage/' . $user->image) }}" width="60" alt="">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Category</label>
-                                    <select name="category_id" class="form-control">
-                                        @foreach ($categories as $cate)
-                                            <option value="{{ $cate->id }}">
-                                                {{ $cate->name }}
-                                            </option>
-                                        @endforeach
+                                    <label class="form-label">Role</label>
+                                    <input class="form-control" type="text" name="role" value="{{ $user->role }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Active</label>
+                                    <select class="form-selected"  name="active">
+                                        <option @selected($user->active == 1 ) value="1">Hoạt Động </option>
+                                        <option @selected($user->active == 0 ) value="0">Không Hoạt Động</option>
                                     </select>
-                                </div>      
-                                <div class="mb-3">
-                                    <label class="form-label">Quantity</label>
-                                    <input class="form-control" type="number" name="quantity" value="0">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea id="summernote" rows="6" name="description"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                  <button type="submit" class="btn btn-dark">Create</button>
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 </div>
                             </form>
 
@@ -98,5 +102,4 @@
         });
     </script>
 
-   
 @endsection

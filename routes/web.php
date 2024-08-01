@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
  Route::get('/account', [authAccountController::class,'index'])->name('account');
  Route::post('/handleRegister', [authAccountController::class,'handleRegister'])->name('handleRegister');
  Route::post('/handleLogin', [authAccountController::class,'handleLogin'])->name('handleLogin');
+ Route::get('/showAccount/{id}', [authAccountController::class,'showAccount'])->name('showAccount');
+ Route::put('/handleUpdateAccount/{id}', [authAccountController::class,'handleUpdateAccount'])->name('handleUpdateAccount');
+ Route::get('/showPassword/{id}', [authAccountController::class,'showPassword'])->name('showPassword');
+ Route::put('/handleUpdatePassword/{id}', [authAccountController::class,'handleUpdatePassword'])->name('handleUpdatePassword');
  Route::get('/logout', [authAccountController::class,'logout'])->name('logout');
 
 // Clients

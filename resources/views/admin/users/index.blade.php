@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'Category List')
+@section('title', 'User List')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">DataTables</li>
                         </ol>
                     </div>
@@ -27,55 +27,56 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Category List</h3>
+                                <h3 class="card-title">User List</h3>
                             </div>
-                            <h1></h1>
-                            @if (session('message'))
-                                <h2 class="alert alert-light">
-                                    {{ session('message') }}
-                                </h2>
-                            @endif
+                            <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table">
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Image</th>
-                                          
-                                            <th scope="col">
-                                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
-                                                    Thêm mới
+                                            <th>#ID</th>
+                                            <th>FullName</th>
+                                            <th>UserName</th>
+                                            <th>Email</th>
+                                            <th>Avatar</th>
+                                            <th>Role</th>
+                                            <th>Active</th>
+                                            <th>
+                                                <a href="" 
+                                                class="btn btn-primary">Thêm
                                                 </a>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categoriesAdmin as $cate)
+                                        @foreach ($users as $stt => $user)
                                             <tr>
-                                                <th scope="row">{{ $cate->id }}</th>
-                                                <td>{{ $cate->name }}</td>
+                                                <td>{{ $stt + 1 }}</td>
+                                                <td>{{ $user->fullname }}</td>
+                                                <td>{{ $user->username }}</td>
+                                                <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/') . '/' . $cate->image }}" width="60"
-                                                        alt="">
+                                                    <img src="{{ asset('/storage/' ) .'/' . $user->avatar}}" alt="" srcset="" width="100">
                                                 </td>
-                                                <td class="d-flex">
-                                                    <a href="{{ route('admin.category.edit', $cate->id) }}"
-                                                        class="btn btn-primary me-1">Edit</a>
-                                                    <form action="{{ route('admin.category.destroy', $cate) }}" method="post">
+                                                <td>{{ $user->role }}</td>
+                                                <td>{{ $user->active == 1 ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                                <td class="d-flex ">
+                                                    <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-primary mr-3">Edit</a>
+                                                    {{-- <form action="{{ route('admin.users.destroy', $user) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button onclick="return confirm('Bạn có muốn xóa không')"
-                                                            type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
 
                                     </tbody>
+
                                 </table>
-                                {{ $categoriesAdmin->links() }}
                             </div>
+                            <!-- /.card-body -->
+                            {{ $users->links() }}
                         </div>
                         <!-- /.card -->
                     </div>

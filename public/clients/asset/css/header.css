@@ -78,7 +78,7 @@
     display: none; /* Hidden by default */
     position: absolute;
     top: 100%; /* Position the menu below the icon */
-   left: -50%;
+    left: -50%;
     text-align: center;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -104,7 +104,7 @@
 /* Dropdown menu link styling */
 .dropdown-menu a {
     display: block;
-    font-size: 16px !important;
+    font-size: 18px !important;
     height: 90px !important;
     padding: 10px 5px; /* Add padding for clickable area */
     text-decoration: none;
