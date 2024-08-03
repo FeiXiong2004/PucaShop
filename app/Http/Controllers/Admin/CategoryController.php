@@ -22,27 +22,41 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
     public function store(Request $request){
-        $request->validate([
-            'name' =>'required|unique:categories,name',
-        ]);
-        Category::create($request->all());
-        return redirect()->route('admin.category.')->with('success', 'Category created successfully');
+        // $request->validate([
+        //     'name' =>'required|unique:categories,name',
+        // ]);
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            $path_image = $request->file('image')->store('images');
+            $data['image'] = $path_image;
+        }
+        Category::create($data);
+        return redirect()->route('admin.category.')->with('message', 'Category created successfully');
     }
     public function edit($id){
         $category = Category::query()->findOrFail($id);
         return view('admin.categories.edit', compact('category'));
     }
     public function update(Request $request, $id){
-        $request->validate([
-            'name' =>'required|unique:categories,name,'.$id,
-        ]);
+
         $category = Category::query()->findOrFail($id);
-        $category->update($request->all());
-        return redirect()->route('admin.category.')->with('success', 'Category updated successfully');
+        $data = $request->except('image');
+        $old_image = $category->image;
+        $data['image'] = $old_image;
+        if ($request->hasFile('image')) {
+            if (file_exists('storage/'. $old_image)) {
+                unlink('storage/'. $old_image);
+            }
+            $path_image = $request->file('image')->store('images');
+            $data['image'] = $path_image;
+        }
+        $category->update($data);
+        return redirect()->route('admin.category.')->with('message', 'Category updated successfully');
     }
     public function destroy($id){
         $category = Category::query()->findOrFail($id);
         $category->delete();
-        return redirect()->route('admin.category.')->with('success', 'Category deleted successfully');
+        return redirect()->route('admin.category.')->with('message', 'Category deleted successfully');
     }
 }

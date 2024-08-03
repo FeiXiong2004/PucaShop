@@ -32,7 +32,7 @@
                     </div>
                     <div class="field">
                         <input type="file" name="avatar" >
-                        <img src="{{  asset('/storage/' ) .'/' . $user->avatar }}" alt="" width="100" height="100">
+                        <img src="{{  asset('/storage/images' ) .'/' . $user->avatar }}" alt="" width="100" height="100">
                     </div>       
                     <br>
                     <br>

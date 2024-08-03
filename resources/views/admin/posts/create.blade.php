@@ -38,7 +38,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="" class="form-label">Title</label>
-                                        <input type="text" class="form-control" placeholder="title" name="title">
+                                        <input type="text" class="form-control" placeholder="title" name="title" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Nhập ảnh</label>
@@ -46,15 +46,15 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Description</label>
-                                        <textarea class="form-control" rows="3" name="description"></textarea>
+                                        <textarea class="form-control" rows="3" name="description" required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Content</label>
-                                        <textarea class="form-control" rows="6" name="content"></textarea>
+                                        <textarea class="form-control" rows="6" name="content" required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">View</label>
-                                        <input type="number" name="view" class="form-control" id="">
+                                        <input type="number" name="view" class="form-control" id="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Category</label>
@@ -67,7 +67,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary">Thêm mới</button>
+                                        <button type="submit" class="btn btn-primary">Create</button>
                                     </div>
                                 </form>
                             </div>

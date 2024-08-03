@@ -40,7 +40,7 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label">Title</label>
                                         <input type="text" class="form-control" placeholder="title" name="title"
-                                            value="{{ $post->title }}" width="" >
+                                            value="{{ $post->title }}" required >
                                     </div>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Nhập ảnh</label>
@@ -49,15 +49,15 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Description</label>
-                                        <textarea class="form-control" rows="3" name="description" value="{{ $post->description }}">{{ $post->description }}</textarea>
+                                        <textarea class="form-control" rows="3" name="description" value="{{ $post->description }}" required>{{ $post->description }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Content</label>
-                                        <textarea class="form-control" rows="6" name="content" value="{{ $post->content }}">{{ $post->content }}</textarea>
+                                        <textarea class="form-control" rows="6" name="content" value="{{ $post->content }}" required>{{ $post->content }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">View</label>
-                                        <input type="number" name="view" class="form-control" value="{{ $post->view }}">
+                                        <input type="number" name="view" class="form-control" value="{{ $post->view }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Category</label>

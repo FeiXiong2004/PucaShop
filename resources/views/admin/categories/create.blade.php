@@ -38,15 +38,15 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="" class="form-label">Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" name="name">
+                                        <input type="text" class="form-control" placeholder="Name" name="name" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Nhập ảnh</label>
+                                        <label for="formFile" class="form-label">Image</label>
                                         <input class="form-control" type="file" id="formFile" name="image">
                                     </div>
 
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary">Thêm mới</button>
+                                        <button type="submit" class="btn btn-primary">Create</button>
                                     </div>
                                 </form>
                             </div>

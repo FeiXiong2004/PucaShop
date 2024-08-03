@@ -59,10 +59,11 @@ Route::middleware(AdminMiddleware::class)->prefix('admin')->as('admin.')->group(
    //Users
    Route::prefix('user')->as('user.')->group(function () {
       Route::get("/list", [UserController::class, "index"]);
+      Route::get("/create", [UserController::class, "create"])->name('create');
+      Route::post("/create", [UserController::class, "store"])->name('store');
+      Route::get("/show/{id}", [UserController::class, "show"])->name('show');
       Route::get("/edit/{id}", [UserController::class, "edit"])->name('edit');
       Route::put("/edit/{id}", [UserController::class, "update"])->name('update');
-
-      //  Route::delete("/destroy/{user}",[UserController::class,"destroy"])->name('destroy');
-
+      Route::delete("/destroy/{id}", [UserController::class, "destroy"])->name('destroy');
    });
 });

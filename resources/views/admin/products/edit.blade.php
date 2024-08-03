@@ -34,6 +34,7 @@
                         <div class="card-body">
                             <form action="{{ route('admin.product.update',$product->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control" value="{{ $product->name }}">
@@ -59,7 +60,7 @@
                                 </div>      
                                 <div class="mb-3">
                                     <label class="form-label">Quantity</label>
-                                    <input class="form-control" type="number" name="quantity" value="0" value="{{ $product->quantity }}">
+                                    <input class="form-control" type="number" name="quantity"  value="{{ $product->quantity }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Description</label>

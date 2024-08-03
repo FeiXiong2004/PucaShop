@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/dist/css/dashboard.css">
     <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/plugins/summernote/summernote-bs4.min.css">
 </head>
+
 <!--
 `body` tag options:
 
@@ -180,7 +183,7 @@
             <a href="index3.html" class="brand-link">
                 <img src="{{ asset('/asset/admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">{{ Auth::user()->username }}</span>
             </a>
 
             <!-- Sidebar -->
@@ -188,8 +191,8 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('/asset/admin') }}/dist/img/user2-160x160.jpg"
-                            class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ asset('/storage/images').'/'. Auth::user()->avatar }}"
+                            class="img-circle elevation-1" alt="User Image" >
                     </div>
                     <div class="info">
                         <a href="#" class="d-block" >{{ Auth::user()->fullname }}</a>
@@ -216,7 +219,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -295,6 +298,12 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="{{ route('admin.post.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('admin.post.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
@@ -313,6 +322,12 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.user.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.user.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>

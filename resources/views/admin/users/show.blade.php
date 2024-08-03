@@ -34,7 +34,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <form action="{{ route('admin.user.update', $user) }}" method="post"
+                            <form action="{{ route('admin.user.update', $user->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -69,7 +69,7 @@
                                             value="{{ $user->active }}" disabled>
                                     </div>
                                     <div class="mb-3">
-                                        <a href="{{ route('admin.users.') }}">Danh sách người dùng</a>
+                                        <a href="{{ route('admin.user.') }}" class="btn btn-dark">List Users</a>
                                     </div>
                             </form>
 

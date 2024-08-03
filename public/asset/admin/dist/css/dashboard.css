@@ -1,0 +1,24 @@
+.card-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.card-body {
+    text-align: center;
+}
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.list-group-item {
+    border: none;
+    color:black;
+    
+    width: 100%;
+    padding: 10px 15px;
+}
+.bd-primary {
+   
+}
+.text-muted {
+    color: black !important;
+}

@@ -39,10 +39,10 @@
                                     @method('PUT')
                                     <div class="mb-3">
                                         <label for="" class="form-label">Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" name="name" value={{ $category->name }}>
+                                        <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $category->name }}" required> 
                                     </div>
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Nhập ảnh</label>
+                                        <label for="formFile" class="form-label">Image</label>
                                         <input class="form-control" type="file" id="formFile" name="image">
                                         <img src="{{ asset('/storage/' . $category->image) }}" alt="" srcset="" width="100">
                                     </div>

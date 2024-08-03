@@ -30,12 +30,13 @@
                                 <h3 class="card-title">Danh sách bài viết</h3>
                             </div>
                             <h1></h1>
-                            @if (session('message'))
-                                <h2 class="alert alert-light">
-                                    {{ session('message') }}
-                                </h2>
-                            @endif
+
                             <div class="card-body">
+                                @if (session('message'))
+                                    <h2 class="alert alert-success">
+                                        {{ session('message') }}
+                                    </h2>
+                                @endif
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -58,7 +59,7 @@
                                                 <th scope="row">{{ $post->id }}</th>
                                                 <td>{{ $post->title }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/') . '/' . $post->image }}" width="60"
+                                                    <img src="{{ asset('/storage/') . '/' . $post->image }}" width="200"
                                                         alt="">
                                                 </td>
                                                 <td>{{ $post->description }}</td>
@@ -66,7 +67,7 @@
                                                 <td>{{ $post->category->name }}</td>
                                                 <td class="d-flex">
                                                     <a href="{{ route('admin.post.edit', $post->id) }}"
-                                                        class="btn btn-primary me-1">Edit</a>
+                                                        class="btn btn-primary mr-3">Edit</a>
                                                     <form action="{{ route('admin.post.destroy', $post) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

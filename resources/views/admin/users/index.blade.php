@@ -29,6 +29,16 @@
                             <div class="card-header">
                                 <h3 class="card-title">User List</h3>
                             </div>
+                            @if (session('message'))
+                                <h2 class="alert alert-success">
+                                    {{ session('message') }}
+                                </h2>
+                            @endif
+                            @if (session('error'))
+                                <h2 class="alert alert-danger">
+                                    {{ session('error') }}
+                                </h2>
+                            @endif
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -42,8 +52,7 @@
                                             <th>Role</th>
                                             <th>Active</th>
                                             <th>
-                                                <a href="" 
-                                                class="btn btn-primary">Thêm
+                                                <a href="{{ route('admin.user.create') }}" class="btn btn-primary">Thêm
                                                 </a>
                                             </th>
                                         </tr>
@@ -56,17 +65,21 @@
                                                 <td>{{ $user->username }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/' ) .'/' . $user->avatar}}" alt="" srcset="" width="100">
+                                                    <img src="{{ asset('/storage/') . '/' . $user->avatar }}" alt=""
+                                                        srcset="" width="100">
                                                 </td>
                                                 <td>{{ $user->role }}</td>
-                                                <td>{{ $user->active == 1 ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                                <td>{{ $user->active == 1 ? 'Active' : 'In_Active' }}</td>
                                                 <td class="d-flex ">
-                                                    <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-primary mr-3">Edit</a>
-                                                    {{-- <form action="{{ route('admin.users.destroy', $user) }}" method="post">
+                                                    <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                        class="btn btn-primary mr-3">Edit</a>
+                                                    <a href="{{ route('admin.user.show', $user->id) }}"
+                                                        class="btn btn-warning mr-3">Show</a>
+                                                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form> --}}
+                                                        <button onclick="return confirm('Do you want to Delete')" type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

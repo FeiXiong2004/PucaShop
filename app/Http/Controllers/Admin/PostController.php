@@ -12,17 +12,27 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::paginate(10);
+        $posts = Post::query()->orderBy('id','desc')->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
     }
 
     public function create()
     {
+
         return view('admin.posts.create');
     }
     public function store(Request $request)
-    {
+    {  
+        $request->validate([
+            'title' => ['required','min:10'],
+            'image' => ['required','image'],
+            'description' => ['required','description'],
+            'content' => ['required','min:25'],
+            'view' => ['required','integer','min:0']
+        ],[
+            ''
+        ]);
         $data = $request->except('image');
         $data['image'] = "";
         if ($request->hasFile('image')) {

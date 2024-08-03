@@ -31,7 +31,7 @@
                             </div>
                             <h1></h1>
                             @if (session('message'))
-                                <h2 class="alert alert-light">
+                                <h2 class="alert alert-success">
                                     {{ session('message') }}
                                 </h2>
                             @endif
@@ -56,12 +56,12 @@
                                                 <th scope="row">{{ $cate->id }}</th>
                                                 <td>{{ $cate->name }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/') . '/' . $cate->image }}" width="60"
+                                                    <img src="{{ asset('/storage/') . '/' . $cate->image }}" width="200"
                                                         alt="">
                                                 </td>
                                                 <td class="d-flex">
                                                     <a href="{{ route('admin.category.edit', $cate->id) }}"
-                                                        class="btn btn-primary me-1">Edit</a>
+                                                        class="btn btn-primary mr-3">Edit</a>
                                                     <form action="{{ route('admin.category.destroy', $cate) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

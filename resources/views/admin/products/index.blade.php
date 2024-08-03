@@ -29,13 +29,12 @@
                             <div class="card-header">
                                 <h3 class="card-title">Product List</h3>
                             </div>
-                            <h1></h1>
-                            @if (session('message'))
-                                <h2 class="alert alert-light">
-                                    {{ session('message') }}
-                                </h2>
-                            @endif
                             <div class="card-body">
+                                @if (session('message'))
+                                    <h2 class="alert alert-success">
+                                        {{ session('message') }}
+                                    </h2>
+                                @endif
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -60,18 +59,19 @@
                                                 <td>{{ $pro->name }}</td>
                                                 <td>{{ $pro->price }}</td>
                                                 <td>
-                                                    <img src="{{ asset('/storage/') . '/' . $pro->image }}" width="60"
+                                                    <img src="{{ asset('/storage/') . '/' . $pro->image }}" width="200"
                                                         alt="">
                                                 </td>
                                                 <td>{{ $pro->quantity }}</td>
-                                                <td>{{ $pro->description }}</td>
+                                                <td>{!! $pro->description !!}</td>
                                                 <td>{{ $pro->category->name }}</td>
                                                 <td class="d-flex">
                                                     <a href="{{ route('admin.product.edit', $pro->id) }}"
-                                                        class="btn btn-primary me-1">Edit</a>
+                                                        class="btn btn-primary mr-3">Edit</a>
                                                     <a href="{{ route('admin.product.show', $pro->id) }}"
-                                                        class="btn btn-warning me-1">Show</a>
-                                                    <form action="{{ route('admin.product.destroy', $pro->id) }}" method="post">
+                                                        class="btn btn-warning mr-3">Show</a>
+                                                    <form action="{{ route('admin.product.destroy', $pro->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button onclick="return confirm('Bạn có muốn xóa không')"

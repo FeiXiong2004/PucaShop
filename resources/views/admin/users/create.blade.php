@@ -33,46 +33,50 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <form action="{{ route('admin.user.update', $user->id) }}" method="post"
+                            <form action="{{ route('admin.user.store') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
+                            
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" name="fullname" class="form-control"
-                                        value="{{ $user->fullname }}" required>
+                                    <input type="text" name="fullname" class="form-control" required
+                                      >
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">User Name</label>
-                                    <input type="text" name="username" class="form-control"
-                                        value="{{ $user->username }}" required> 
+                                    <input type="text" name="username" class="form-control" required
+                                        >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                                    <input type="email" name="email" class="form-control" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Hình</label>
                                     <input class="form-control" type="file" id="formFile" name="avatar">
-                                    <br><img src="{{ asset('storage/' . $user->image) }}" width="60" alt="">
+                                   
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Role</label>
-                                    <select class="form-selected"  name="role">
+                                    <select class="form-selected"  name="role" required>
                                         <option  value="admin">Admin</option>
                                         <option value="user   ">User</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Active</label>
-                                    <select class="form-selected"  name="active">
-                                        <option @selected($user->active == 1 ) value="1">Active </option>
-                                        <option @selected($user->active == 0 ) value="0">In_Active</option>
+                                    <select class="form-selected"  name="active" required>
+                                        <option  value="1">Hoạt Động </option>
+                                        <option  value="0">Không Hoạt Động</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Create </button>
                                 </div>
                             </form>
 

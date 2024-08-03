@@ -36,20 +36,20 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" value="{{ $product->name }}">
+                                    <input type="text" name="name" class="form-control" value="{{ $product->name }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control"  value="{{ $product->price }}">
+                                    <input type="text" name="price" class="form-control"  value="{{ $product->price }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Image</label>
-                                    <input class="form-control" type="file" id="formFile" name="image">
+                                  
                                     <img src="{{ asset('/storage/') .'/'.$product->image}}" alt="" width="100px">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Category</label>
-                                    <select name="category_id" class="form-control">
+                                    <select name="category_id" class="form-control" disabled>
                                         @foreach ($categories as $cate)
                                             <option value="{{ $cate->id }}" @selected($product->category_id == $cate->id)>
                                                 {{ $cate->name }}
@@ -59,16 +59,16 @@
                                 </div>      
                                 <div class="mb-3">
                                     <label class="form-label">Quantity</label>
-                                    <input class="form-control" type="number" name="quantity" value="0" value="{{ $product->quantity }}">
+                                    <input class="form-control" type="number" name="quantity"  value="{{ $product->quantity }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Description</label>
-                                    <textarea id="summernote" rows="6" name="description" >
+                                    <textarea id="summernote" rows="6" name="description" disabled>
                                         {{ $product->description }}
                                     </textarea>
                                 </div>
                                 <div class="mb-3">
-                                  <a href="{{ route('admin.product.') }}" class="btn btn-dark">List</a>
+                                  <a href="{{ route('admin.product.') }}" class="btn btn-dark">List Products</a>
                                 </div>
                             </form>
 

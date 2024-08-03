@@ -43,8 +43,19 @@
                         <div class="btn-layer"></div>
                         <input type="submit" value="Login">
                     </div>
-               
+
+                    @if (session('error'))
+                        <h4 class="alert alert-danger text-center" style="color:red">
+                            {{ session('error') }}
+                        </h4>
+                    @endif
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 </form>
+
                 <form action="{{ route('handleRegister') }}" class="signup" method="POST">
                     @csrf
                     <div class="field">
@@ -74,12 +85,6 @@
                                         <li style="color: red">{{ $error }}</li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        @endif
-
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
                             </div>
                         @endif
                     </div>
