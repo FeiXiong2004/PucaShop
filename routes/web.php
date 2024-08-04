@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\authAccountController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +49,9 @@ Route::get('/shop/{category_id?}', function ($category_id = null) {
     return view('shop', compact('category_id'));
 })->name('shop');
 Route::get('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::middleware(['auth'])->group(function () {
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+});

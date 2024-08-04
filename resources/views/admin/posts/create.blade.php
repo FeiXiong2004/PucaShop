@@ -33,34 +33,43 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="container">
-                                <form action="{{ route('admin.post.store') }}" method="post"
-                                    enctype="multipart/form-data">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li >{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form action="{{ route('admin.post.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="" class="form-label">Title</label>
-                                        <input type="text" class="form-control" placeholder="title" name="title" required>
+                                        <input type="text" class="form-control" placeholder="title" name="title" value="{{ old('title') }}">
+                                        {{-- <span style="color: red">{{ $errors->title }}</span> --}}
                                     </div>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Nhập ảnh</label>
                                         <input class="form-control" type="file" id="formFile" name="image">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Description</label>
-                                        <textarea class="form-control" rows="3" name="description" required></textarea>
+                                        <textarea class="form-control" rows="3" name="description">{{ old('description') }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Content</label>
-                                        <textarea class="form-control" rows="6" name="content" required></textarea>
+                                        <textarea class="form-control" rows="6" name="content">{{ old('content') }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">View</label>
-                                        <input type="number" name="view" class="form-control" id="" required>
+                                        <input type="number" name="view" class="form-control" id="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Category</label>
                                         <select name="cate_id" id="">
                                             @foreach ($categories as $cate)
-                                                <option value="{{ $cate->id }}">
+                                                <option value="{{ $cate->id }}" @if ($cate->id == old('cate_id')) selected        
+                                                @endif>
                                                     {{ $cate->name }}
                                                 </option>
                                             @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -22,17 +23,9 @@ class PostController extends Controller
 
         return view('admin.posts.create');
     }
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {  
-        $request->validate([
-            'title' => ['required','min:10'],
-            'image' => ['required','image'],
-            'description' => ['required','description'],
-            'content' => ['required','min:25'],
-            'view' => ['required','integer','min:0']
-        ],[
-            ''
-        ]);
+       
         $data = $request->except('image');
         $data['image'] = "";
         if ($request->hasFile('image')) {

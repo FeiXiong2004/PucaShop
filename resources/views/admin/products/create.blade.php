@@ -32,6 +32,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            
                             <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
@@ -55,7 +56,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>      
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label">Quantity</label>
                                     <input class="form-control" type="number" name="quantity" value="0">
@@ -65,7 +66,7 @@
                                     <textarea id="summernote" rows="6" name="description"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                  <button type="submit" class="btn btn-dark">Create</button>
+                                    <button type="submit" class="btn btn-dark">Create</button>
                                 </div>
                             </form>
 
@@ -98,5 +99,5 @@
         });
     </script>
 
-   
+
 @endsection

@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function productDetail($id){
         $productDetail = Product::query()->findOrFail($id);
-        return view('productDetail', compact('productDetail'));
+        $comments = $productDetail->comments()->with('user')->get();
+        return view('productDetail', compact('productDetail','comments'));
         
     }
 }

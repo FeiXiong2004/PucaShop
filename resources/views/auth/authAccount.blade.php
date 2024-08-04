@@ -50,10 +50,10 @@
                         </h4>
                     @endif
                     @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </form>
 
                 <form action="{{ route('handleRegister') }}" class="signup" method="POST">
@@ -78,15 +78,20 @@
                         <input type="submit" value="Signup">
                     </div>
                     <div class="field">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color: red">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
                             </div>
                         @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color: red">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                     </div>
                 </form>
             </div>
