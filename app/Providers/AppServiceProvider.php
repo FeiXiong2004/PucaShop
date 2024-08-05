@@ -26,11 +26,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         view()->composer('*', function ($view) {
             $categories = Category::all();
-            $products = Product::all();
+            $products = Product::paginate(10);
             $highestPriceProducts = Product::query()
                 ->orderBy('price', 'desc')
-                ->limit(10)
-                ->get();
+                ->paginate(12);
 
     
                 // Query to filter products based on category_id if provided
@@ -42,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
                     $productByCategoryQuery->where('products.category_id', $view->category_id);
                 }
     
-                $productByCategory = $productByCategoryQuery->get();
+                $productByCategory = $productByCategoryQuery->paginate(6);
     
           
             $view->with(compact('categories', 'products', 'highestPriceProducts', 'productByCategory')); // Pass the categories to all views.

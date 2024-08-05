@@ -42,6 +42,7 @@
         </section>
 
         <section id="products_home">
+            {{-- Sản phẩm bán chạy và giá thấp --}}
             <div class="container pt-5 pb-5">
                 <h1 class="text-center text_products" style="font-size: 3rem;">Sản phẩm bán chạy</h1>
                 <div class="list_item_products">
@@ -60,7 +61,38 @@
                             </div>
                         </a>
                         @endforeach
+                      
                 </div>
+                <div class="float-end">
+                    {{ $highestPriceProducts->links() }}
+                </div>
+                
+            </div>
+            {{-- Sản phẩm bán chạy và giá cao --}}
+            <div class="container pt-5 pb-5">
+                <h1 class="text-center text_products" style="font-size: 3rem;">Sản phẩm hot gần đây</h1>
+                <div class="list_item_products">
+                        @foreach ($highestPriceProducts as $product)
+                        <a href="{{ route('productDetail', $product->id )}}">
+                            <div class="item_products">
+                                <div class="item_products_img">
+                                    <i class="fa fa-heart" style="font-size:48px"></i>
+                                    <img src="{{ $product->image }}" alt="">
+                                </div>
+                                <p class="mt-3">{{ $product->name}}</p>
+                                <h2> {{ $product->price }}$</h2>
+                                <div class="item_products_btn">
+                                    <button class="btn btn-warning">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
+                      
+                </div>
+                <div class="float-end">
+                    {{ $highestPriceProducts->links() }}
+                </div>
+                
             </div>
         </section>
     </main>

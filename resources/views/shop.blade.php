@@ -27,7 +27,10 @@
                                 </a>
                             </div>
                         @endforeach
-
+                       
+                            {{ $productByCategory->links()}}
+                       
+                       
 
                         <!-- Thêm sản phẩm khác tương tự vào đây -->
                     </div>

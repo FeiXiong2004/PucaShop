@@ -32,7 +32,7 @@
                 </ul>
                 <div class="list_header_icon">
                     <div class="dropdown">
-                        <a href="login.html">
+                        <a href="#">
                             <i class="fa fa-user"></i>
                         </a>
                         <div class="dropdown-menu">
