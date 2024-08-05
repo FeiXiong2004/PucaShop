@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.layout')
+
+@section('title')
+    Liên Hệ
+@endsection
+
+@section('libs-css')
+    <link rel="stylesheet" href="{{ asset('clients/asset') }}/css/contact.css">
+@endsection
+
+@section('content')
     <div class="container mb-5">
         <h1 class="text-center">Liên Hệ</h1>
 
@@ -48,10 +51,7 @@
             </div>
             <div class="col-4">
                 <h3>Địa chỉ Puca Shop</h3>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27111.9792059396!2d105.79926120477317!3d20.994512507990976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac92edd289bb%3A0xefb7db551919d81a!2zNTggTmcuIDI5IFAuIEtoxrDGoW5nIEjhuqEsIEtoxrDGoW5nIMSQw6xuaCwgVGhhbmggWHXDom4sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1722838992358!5m2!1svi!2s"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.07735018997!2d105.81288291118264!3d20.989536289043212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac92ec270dfb%3A0xf57847c687880f95!2zNjIgTmcuIDI5IFAuIEtoxrDGoW5nIEjhuqEsIEtoxrDGoW5nIMSQw6xuaCwgVGhhbmggWHXDom4sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1722840389371!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="inforContact row text-center mb-2 ">
@@ -64,5 +64,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+@endsection

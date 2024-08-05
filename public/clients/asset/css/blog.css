@@ -1,0 +1,169 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.blog-header {
+    text-align: center;
+    padding: 40px 0;
+    background-color: rgb(228, 171, 133);
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.blog-header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.blog-header p {
+    font-size: 1.2em;
+    color: #e0f0ff;
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.post-title {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    color: rgb(228, 171, 133);
+}
+
+.post-description {
+    flex-grow: 1;
+    color: #555;
+}
+
+.read-more-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: flex-start;
+    text-align: center;
+}
+
+.read-more-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination .page-link {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #3498db;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #fff;
+}
+
+.blog-post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.blog-post-title {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color:  rgb(228, 171, 133);
+}
+
+.blog-post-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.blog-post-description {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.blog-post-content {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.blog-post-views {
+    font-size: 0.9em;
+    color: #999;
+}

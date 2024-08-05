@@ -72,7 +72,7 @@
             <div class="container pt-5 pb-5">
                 <h1 class="text-center text_products" style="font-size: 3rem;">Sản phẩm hot gần đây</h1>
                 <div class="list_item_products">
-                        @foreach ($highestPriceProducts as $product)
+                        @foreach ($lowestPriceProducts as $product)
                         <a href="{{ route('productDetail', $product->id )}}">
                             <div class="item_products">
                                 <div class="item_products_img">

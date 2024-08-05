@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    Sản phẩm
+    Sản phẩm Chi tiết {{ $productDetail->name }}
 @endsection
 @section('libs-css')
     <link rel="stylesheet" href="{{ asset('clients/asset') }}/css/productDetail.css">

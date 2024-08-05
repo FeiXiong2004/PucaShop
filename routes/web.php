@@ -38,20 +38,33 @@ use Illuminate\Support\Facades\Route;
 //  Route::get('/logout', [authAccountController::class,'logout'])->name('logout');
 
 // Clients
+
+//Home
 Route::get('/', function () {
     return view('home');
 });
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-// Route::get('/home', [ProductsController::class,'index'])->name('home');
+//Shop
 Route::get('/shop/{category_id?}', function ($category_id = null) {
     return view('shop', compact('category_id'));
 })->name('shop');
+//Product Detail
 Route::get('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+//Blog
+Route::get('/blog', function () {
+    return view('blog');
+})->name('blog');
+//Blog Detail
+Route::get('/blog/{id}', [HomeController::class, 'blogDetail'])->name('blogDetail');
+//Contact
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
+//Comments
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-
 Route::middleware(['auth'])->group(function () {
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });

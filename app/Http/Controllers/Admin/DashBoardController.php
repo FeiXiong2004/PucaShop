@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class DashBoardController extends Controller
         // Tổng số sản phẩm của mỗi danh mục
         $productsByCategory = Category::withCount('products')->get();
 
-        $totalUsers = User::count();
+        $totalPosts = Post::count();
         
 
-        return view('admin.dashboard', compact('totalProducts', 'productsByCategory','totalUsers'));
+        return view('admin.dashboard', compact('totalProducts', 'productsByCategory','totalPosts'));
     }
 }

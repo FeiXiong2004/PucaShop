@@ -27,8 +27,8 @@
                     <li class="list_menu_item">
                         <a href="{{ route('shop') }}">Cửa hàng</a>
                     </li>
-                    <li class="list_menu_item"><a href="">Blog</a></li>
-                    <li class="list_menu_item"><a href="">Liên hệ</a></li>
+                    <li class="list_menu_item"><a href="{{ route('blog') }}">Blog</a></li>
+                    <li class="list_menu_item"><a href="{{ route('contact') }}">Liên hệ</a></li>
                 </ul>
                 <div class="list_header_icon">
                     <div class="dropdown">
@@ -78,19 +78,19 @@
                     <!-- Contact Info -->
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
-                        <p><i class="fa fa-home mr-3"></i> 123 Main St, Anytown, USA</p>
-                        <p><i class="fa fa-envelope mr-3"></i> info@pucashop.com</p>
-                        <p><i class="fa fa-phone mr-3"></i> +1 234 567 890</p>
-                        <p><i class="fa fa-print mr-3"></i> +1 234 567 891</p>
+                        <p><i class="fa fa-home mr-3"></i> 62 Ngõ 29 Khương Hạ Khương Đình Thanh Xuân Hà Nội</p>
+                        <p><i class="fa fa-envelope mr-3"></i> pucashop@gmail.com</p>
+                        <p><i class="fa fa-phone mr-3"></i> +84 366 420 732</p>
+                        <p><i class="fa fa-print mr-3"></i> +84 345 679 999</p>
                     </div>
 
                     <!-- Social Media -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                         <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Follow Us</h5>
-                        <a href="#" class="text-white"><i class="fa fa-facebook mr-3"></i></a>
-                        <a href="#" class="text-white"><i class="fa fa-twitter mr-3"></i></a>
-                        <a href="#" class="text-white"><i class="fa fa-instagram mr-3"></i></a>
-                        <a href="#" class="text-white"><i class="fa fa-linkedin mr-3"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100004579500555" class="text-white"><i class="fa fa-facebook mr-3"></i></a>
+                        <a href="https://twitter.com/Hung_Nguyen04" class="text-white"><i class="fa fa-twitter mr-3"></i></a>
+                        <a href="https://www.instagram.com/phihung_isme/" class="text-white"><i class="fa fa-instagram mr-3"></i></a>
+                        <a href="#" class="text-white"><i class="fa fa-wechat mr-3"></i></a>
                     </div>
 
                     <!-- Useful Links -->

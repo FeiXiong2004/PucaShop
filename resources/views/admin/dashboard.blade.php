@@ -63,11 +63,11 @@
                     <div class="col-md-4 mb-4">
                         <div class="card bg-info text-white" style="  background: -webkit-linear-gradient(left, #FF9966, #fa4299);">
                             <div class="card-header">
-                                Tổng số tài khoản hiện có
+                                Tổng số bài viết hiện nay
                             </div>
                             <div class="card-body">
-                                <h2>{{ $totalUsers }}</h2>
-                                <p class="text">Tổng số lượt xem của tất cả sản phẩm</p>
+                                <h2>{{ $totalPosts }}</h2>
+                                <p class="text">   Tổng số bài viết có trong hệ thống</p>
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ class PostsSeeder extends Seeder
             DB::table('posts')->insert(
                 [
                     'title' => $faker->text(30),
-                    'image' => 'https://i1-vnexpress.vnecdn.net/2024/06/29/3-1719619734-1719621296.jpg?w=680&h=408&q=100&dpr=1&fit=crop&s=rAlxZKqS0elOkHYCS8Jtpg',
+                    'image' => 'https://bietthunhaphodep.com/wp-content/uploads/2015/12/hinh-anh-thiet-ke-noi-that-dep-cho-can-nha-cua-ban.jpg',
                     'description' => $faker->text(50),
                     'content' => $faker->text(),
                     'view' => rand(1, 1000),

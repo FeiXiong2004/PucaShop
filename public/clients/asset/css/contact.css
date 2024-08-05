@@ -1,0 +1,9 @@
+.inforContact{
+
+    width: 100%;
+    background: -webkit-linear-gradient(left, #FF9966, #fa4299);
+    height: 15rem;
+    border-radius: 10px ;
+    text-transform: uppercase;
+    padding: 1.5rem;
+}

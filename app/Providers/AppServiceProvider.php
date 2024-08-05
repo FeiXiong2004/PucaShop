@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Request;
@@ -27,10 +28,15 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $categories = Category::all();
             $products = Product::paginate(10);
+            $posts = Post::paginate(6   );
             $highestPriceProducts = Product::query()
                 ->orderBy('price', 'desc')
                 ->paginate(12);
-
+           
+            $lowestPriceProducts = Product::query()
+                ->orderBy('price', 'asc')
+                ->paginate(12);
+           
     
                 // Query to filter products based on category_id if provided
                 $productByCategoryQuery = Product::query()
@@ -44,7 +50,9 @@ class AppServiceProvider extends ServiceProvider
                 $productByCategory = $productByCategoryQuery->paginate(6);
     
           
-            $view->with(compact('categories', 'products', 'highestPriceProducts', 'productByCategory')); // Pass the categories to all views.
+            $view->with(compact('categories', 'products', 
+            'highestPriceProducts', 'productByCategory',
+            'lowestPriceProducts','posts')); // Pass the categories to all views.
         });
         view()->composer('productDetail', function ($view) {
 

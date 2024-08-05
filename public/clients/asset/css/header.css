@@ -1,9 +1,9 @@
 /* Header */
 .header_page {
-    background-color: #fff;
+    background-color:  #f0f0f0;
     height: auto;
     line-height: 90px;
-    position: relative;
+    position: sticky;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -12,6 +12,7 @@
     top: 0;
     right: 0;
     left: 0;
+    z-index: 1  ;
 
 }
 
@@ -47,10 +48,14 @@
 .list_header_menu li:hover {
     display: inline-block;
     list-style-type: none;
-    background-color: #f0f0f0;
+    background-color: rgb(228, 171, 133);
+    font-size: 18px;
+    text-transform: uppercase;
 }
 .list_header_menu li:hover a{
-    color: #f78da7 !important; 
+    color: #0000008a !important; 
+   
+   
 }
 
 .list_header_menu li>a {
