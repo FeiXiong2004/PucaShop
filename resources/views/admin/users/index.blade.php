@@ -73,8 +73,6 @@
                                                 <td class="d-flex ">
                                                     <a href="{{ route('admin.user.edit', $user->id) }}"
                                                         class="btn btn-primary mr-3">Edit</a>
-                                                    <a href="{{ route('admin.user.show', $user->id) }}"
-                                                        class="btn btn-warning mr-3">Show</a>
                                                     <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

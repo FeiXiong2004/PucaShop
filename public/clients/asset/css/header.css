@@ -3,7 +3,7 @@
     background-color:  #f0f0f0;
     height: auto;
     line-height: 90px;
-    position: sticky;
+    position: fixed;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     top: 0;
     right: 0;
     left: 0;
-    z-index: 1  ;
+    z-index: 2;
 
 }
 

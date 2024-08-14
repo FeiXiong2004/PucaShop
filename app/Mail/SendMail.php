@@ -13,16 +13,21 @@ class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $fullname;
+    public $email;
+    public $phone;
+    public $messageContent;
     public $title;
-    public $content;
     /**
      * Create a new message instance.
      */
-    public function __construct($fullname, $title, $content)
+    public function __construct($fullname, $email, $phone,$messageContent,$title)
     {
-        $this->fullname = $fullname;
         $this->title = $title;
-        $this->content = $content;
+        $this->fullname = $fullname;
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->messageContent = $messageContent;
+      
     }
 
     /**
@@ -42,7 +47,8 @@ class SendMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.contact',
+            view: 'mails.contactContent',
+           
         );
     }
 

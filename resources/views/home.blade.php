@@ -32,7 +32,7 @@
                     <a href="{{ route('shop',$cate->id) }}">
                         <div class="item_category ">
                             {{-- <img src="{{ asset('clients/asset') }}/image/Puca home.png" alt=""> --}}
-                            <img src="{{ $cate->image }}" alt="">
+                            <img src="{{ asset('storage/') .'/'. $cate->image }}" alt="">
                             <h2>{{ $cate->name}}</h2>       
                         </div>            
                     </a>
@@ -51,7 +51,7 @@
                             <div class="item_products">
                                 <div class="item_products_img">
                                     <i class="fa fa-heart" style="font-size:48px"></i>
-                                    <img src="{{ $product->image }}" alt="">
+                                    <img src="{{ asset('storage/') .'/'. $product->image }}" walt="">
                                 </div>
                                 <p class="mt-3">{{ $product->name}}</p>
                                 <h2> {{ $product->price }}$</h2>
@@ -77,7 +77,7 @@
                             <div class="item_products">
                                 <div class="item_products_img">
                                     <i class="fa fa-heart" style="font-size:48px"></i>
-                                    <img src="{{ $product->image }}" alt="">
+                                    <img src="{{ asset('storage/') .'/'. $product->image }}" alt="">
                                 </div>
                                 <p class="mt-3">{{ $product->name}}</p>
                                 <h2> {{ $product->price }}$</h2>

@@ -87,14 +87,16 @@ body {
     transition: 0.5s;
     margin-bottom: 3rem;
     background-color: #e4ab85;
+    
 }
 
 /* Category and Products */
 /* Category */
 .list_item_category {
-    
+    width: 100%;
     display: flex;
     gap: 20px;
+    overflow: hidden;
 }
 .list_item_category a{
     display: block; /* Đảm bảo thẻ a chiếm toàn bộ không gian */
@@ -184,6 +186,7 @@ body {
     border-radius: 5px;
     margin: 1rem 0;
     transition: 1s;
+    height: 250px;
 }
 
 .item_products_img .fa-heart {

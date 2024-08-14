@@ -81,7 +81,7 @@ class UserController extends Controller
        
        if ($user) {
            $user->delete();
-           return redirect()->route('admin.user')->with('success', 'Người dùng đã được xóa.');
+           return redirect()->route('admin.user.')->with('success', 'Người dùng đã được xóa.');
        } 
       
     }

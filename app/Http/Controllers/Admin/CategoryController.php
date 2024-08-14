@@ -22,9 +22,10 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
     public function store(Request $request){
-        // $request->validate([
-        //     'name' =>'required|unique:categories,name',
-        // ]);
+        $request->validate([
+            'name' =>'required',
+            'image' =>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' 
+        ]);
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {

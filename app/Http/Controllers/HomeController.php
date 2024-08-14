@@ -13,7 +13,7 @@ class HomeController extends Controller
         return view('productDetail', compact('productDetail','comments'));
         
     }
-    public function blogDetail($id){
+    public   function blogDetail($id){
         $post = Post::query()->findOrFail($id);
         return view('blogDetail', compact('post'));
     }

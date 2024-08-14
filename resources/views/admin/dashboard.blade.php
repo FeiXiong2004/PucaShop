@@ -24,8 +24,6 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-               
-
                 <div class="row">
                     <!-- Tổng số sản phẩm -->
                     <div class="col-md-4 mb-4">
