@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('author');
             $table->text('content');
             $table->timestamps();
+            $table->unique(['user_id', 'product_id']);
+
         });
         
     }

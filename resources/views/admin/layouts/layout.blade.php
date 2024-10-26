@@ -10,14 +10,20 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('admin_public/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/dist/css/dashboard.css">
-    <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="{{ asset('/asset/admin/') }}/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="{{ asset('admin_public/dist/css/dashboard.css') }} ">
+    <link rel="stylesheet" href="{{ asset('admin_public/dist/css/adminlte.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('admin_public/plugins/summernote/summernote-bs4.min.css') }}"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.2.0/noty.min.css" rel="stylesheet">
+
+
+
 </head>
 
 <!--
@@ -181,9 +187,9 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="{{ asset('/asset/admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                <img src="{{ asset('admin_public/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">{{ Auth::user()->username }}</span>
+                <span class="brand-text font-weight-light">Admin</span>
             </a>
 
             <!-- Sidebar -->
@@ -191,11 +197,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('/storage/images').'/'. Auth::user()->avatar }}"
-                            class="img-circle elevation-1" alt="User Image" >
+                        <img src="{{ asset('/storage/images') }}" class="img-circle elevation-1" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block" >{{ Auth::user()->fullname }}</a>
+                        <a href="#" class="d-block">Admin</a>
                     </div>
                 </div>
 
@@ -236,12 +241,38 @@
                                 </p>
                             </a>
                         </li> --}}
+                        {{-- Brand --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    Quản Lý Thương Hiệu
+                                    <i class="fas fa-angle-left right"></i>
+                                    {{-- <span class="badge badge-info right">6</span> --}}
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.brand.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.brand.') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                         {{-- Category --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Categories Manager
+                                    Quản Lý Danh Mục
                                     <i class="fas fa-angle-left right"></i>
                                     {{-- <span class="badge badge-info right">6</span> --}}
                                 </p>
@@ -250,13 +281,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('admin.category.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create</p>
+                                        <p>Thêm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.category.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List</p>
+                                        <p>Danh sách </p>
                                     </a>
                                 </li>
 
@@ -267,7 +298,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Products Manager
+                                    Quản Lý Sản Phẩm
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -275,13 +306,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('admin.product.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create</p>
+                                        <p>Thêm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.product.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List</p>
+                                        <p>Danh sách </p>
                                     </a>
                                 </li>
 
@@ -292,7 +323,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Posts Manager
+                                    Quản Lý Bài Viết
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -300,13 +331,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('admin.post.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create</p>
+                                        <p>Thêm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.post.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List</p>
+                                        <p>Danh sách </p>
                                     </a>
                                 </li>
 
@@ -317,7 +348,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>
-                                    User Manager
+                                    Quản Lý Tài Khoản
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -325,26 +356,26 @@
                                 <li class="nav-item">
                                     <a href="{{ route('admin.user.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create</p>
+                                        <p>Thêm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.user.') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>List</p>
+                                        <p>Danh sách </p>
                                     </a>
                                 </li>
 
                             </ul>
                         </li>
-                       {{-- Home --}}
-                        <li class="nav-item">
+                        {{-- Home --}}
+                        {{-- <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link">
                                 <p>
                                     Quay lại trang chủ
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
 
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -873,19 +904,19 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ asset('/asset/admin/') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('admin_public/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
-    <script src="{{ asset('/asset/admin/') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="{{ asset('/asset/admin/') }}/dist/js/adminlte.js"></script>
+    <script src="{{ asset('admin_public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+    <!-- AdminLTE -->
+    <script src="{{ asset('admin_public/dist/js/adminlte.js') }}"></script>
     <!-- OPTIONAL SCRIPTS -->
-    <script src="{{ asset('/asset/admin/') }}/plugins/chart.js/Chart.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    {{-- <script src="{{ asset('/asset/admin/') }}/dist/js/demo.js"></script> --}}
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('/asset/admin/') }}/dist/js/pages/dashboard3.js"></script>
+    <script src="{{ asset('admin_public/plugins/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('admin_public/dist/js/pages/dashboard3.js') }}"></script>
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- PNotify JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.2.0/noty.min.js"></script>
 
     @yield('script')
 </body>

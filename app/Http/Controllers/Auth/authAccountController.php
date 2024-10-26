@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,24 +15,17 @@ class authAccountController extends Controller
 {
     public function index()
     {
-        return view('auth.authAccount');
+        return view('client.auth.authAccount');
     }
-    public function handleRegister(Request $request)
+    public function handleRegister(RegisterRequest $request)
     {
-        $validatedData = $request->validate([
-            'fullname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users,username'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed', 'min:8'],
-        ], [
-            'password.confirmed' => 'Password and confirmation password must match.',
-        ]);
-
+        $data = $request->all();
+        // dd($data);
         // Hash the password
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $data['password'] =  Hash::make($data['password']) ;
 
         // Create the user
-        User::create($validatedData);
+        User::create($data);
 
         // Redirect with success message
         return redirect()->route('account')->with('success', 'Registration successful!');
@@ -47,13 +41,13 @@ class authAccountController extends Controller
             // Đăng nhập thành công
             // Kiểm tra trạng thái tài khoản
             $user = Auth::user();
-            if ($user->active === 0) {
+            if ($user->is_active === 0) {
                 Auth::logout();
                 return redirect()->route('account')->with('error', 'Your account has been banned');
             }
 
             // Chuyển hướng người dùng đến route 'home' nếu tài khoản hoạt động
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         } else {
             // Đăng nhập thất bại
             return redirect()->back()->with('message', 'Email hoặc Password không chính xác');
@@ -62,12 +56,12 @@ class authAccountController extends Controller
     public function showAccount($id)
     {
         $user = User::query()->findOrFail($id);
-        return view('auth.updateAccount', compact('user'));
+        return view('client.auth.updateAccount', compact('user'));
     }
     public function showPassword($id)
     {
         $user = User::query()->findOrFail($id);
-        return view('auth.updatePassword', compact('user'));
+        return view('client.auth.updatePassword', compact('user'));
     }
     public function handleUpdateAccount($id, Request $request)
     {
@@ -78,7 +72,7 @@ class authAccountController extends Controller
         $old_image = $user->avatar;
         $data['avatar'] = $old_image;
 
-        // Kiểm tra nếu có file mới được tải lên
+        // // Kiểm tra nếu có file mới được tải lên
         if ($request->hasFile('avatar')) {
             // Xóa file avatar cũ nếu tồn tại
             if ($old_image && Storage::exists($old_image)) {
@@ -89,9 +83,9 @@ class authAccountController extends Controller
             $path_image = $request->file('avatar')->store('images');
             $data['avatar'] = $path_image;
         }
-
+    
         // Cập nhật dữ liệu
-        $user->update($data);
+         $user->save();
         return redirect()->route('home');
     }
     public function handleUpdatePassword($id, Request $request)

@@ -34,40 +34,62 @@
                         <div class="card-body">
 
                             <div class="container">
-                                <form action="{{ route('admin.post.update', $post) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.post.update', $post) }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">
                                         <label for="" class="form-label">Title</label>
                                         <input type="text" class="form-control" placeholder="title" name="title"
-                                            value="{{ $post->title }}" required >
+                                            value="{{ $post->title }}">
+                                        @error('title')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Nhập ảnh</label>
+                                        <label for="formFile" class="form-label">Image</label>
                                         <input class="form-control" type="file" id="fileImage" name="image">
-                                        <img src="{{ asset('/storage/' . $post->image) }}" alt="" srcset="" width="100">
+                                        <img src="{{ asset('/storage/' . $post->image) }}" alt="" srcset=""
+                                            width="100">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Description</label>
-                                        <textarea class="form-control" rows="3" name="description" value="{{ $post->description }}" required>{{ $post->description }}</textarea>
+                                        <textarea class="form-control" rows="3" name="description" value="{{ $post->description }}">{{ $post->description }}</textarea>
+                                        @error('description')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Content</label>
-                                        <textarea class="form-control" rows="6" name="content" value="{{ $post->content }}" required>{{ $post->content }}</textarea>
+                                        <textarea class="form-control" rows="6" name="content" value="{{ $post->content }}">{{ $post->content }}</textarea>
+                                        @error('content')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">View</label>
-                                        <input type="number" name="view" class="form-control" value="{{ $post->view }}" required>
+                                        <input type="number" name="view" class="form-control"
+                                            value="{{ $post->view }}">
+                                        @error('view')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Category</label>
                                         <select name="cate_id" id="">
                                             @foreach ($categories as $cate)
-                                                <option value="{{ $cate->id }}" @if ($cate->id === $post->category_id) selected @endif>
+                                                <option value="{{ $cate->id }}"
+                                                    @if ($cate->id === $post->category_id) selected @endif>
                                                     {{ $cate->name }}
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('category_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <button type="submit" class="btn btn-primary">Update</button>

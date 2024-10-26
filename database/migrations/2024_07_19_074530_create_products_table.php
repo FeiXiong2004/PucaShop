@@ -4,30 +4,37 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateProductsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Chạy migration.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->double('price');
-            $table->string('image')->nullable();
-            $table->integer('quantity');
-            $table->text('description');
-            $table->foreignId('category_id')->constrained();
-            $table->timestamps();
+            $table->id(); 
+            $table->string('name', 255); 
+            $table->string('sku', 100)->unique(); 
+            $table->string('slug', 255)->unique(); 
+            $table->decimal('price', 10, 2);
+            $table->text('description')->nullable(); 
+            $table->foreignId('category_id')->constrained('categories','id'); 
+            $table->foreignId('brand_id')->constrained('brands','id'); 
+            $table->tinyInteger('status')->default(1); 
+            $table->timestamps(); 
+            $table->softDeletes();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Hoàn tác migration.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('products');
     }
-};
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UserController extends Controller
     {
         return view('admin.users.create')->with('message','Create successfully');
     }
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
         $data['avatar'] = "";
@@ -40,7 +41,7 @@ class UserController extends Controller
         $user = User::query()->findOrFail($id);
         return view('admin.users.edit', compact('user'));
     }
-    public function update($id, Request $request)
+    public function update($id, UserRequest $request)
     {
         $user = User::query()->findOrFail($id);
         // dd($user);

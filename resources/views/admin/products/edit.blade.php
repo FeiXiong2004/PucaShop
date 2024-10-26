@@ -32,46 +32,96 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('admin.product.update',$product->id) }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" value="{{ $product->name }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control"  value="{{ $product->price }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Image</label>
-                                    <input class="form-control" type="file" id="formFile" name="image">
-                                    <img src="{{ asset('/storage/') .'/'.$product->image}}" alt="" width="100px">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Category</label>
-                                    <select name="category_id" class="form-control">
-                                        @foreach ($categories as $cate)
-                                            <option value="{{ $cate->id }}" @selected($product->category_id == $cate->id)>
-                                                {{ $cate->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>      
-                                <div class="mb-3">
-                                    <label class="form-label">Quantity</label>
-                                    <input class="form-control" type="number" name="quantity"  value="{{ $product->quantity }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea id="summernote" rows="6" name="description" >
-                                        {{ $product->description }}
-                                    </textarea>
-                                </div>
-                                <div class="mb-3">
-                                  <button type="submit" class="btn btn-dark">Update</button>
-                                </div>
-                            </form>
+                            <div class="container">
+                                <form action="{{ route('admin.product.update',$product->id) }}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label class="form-label">Chọn danh mục </label>
+                                        <select name="category_id" class="form-control">
+                                            @foreach ($categories as $cate)
+                                                <option value="{{ $cate->id }}">
+                                                    {{ $cate->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Chọn thương hiệu </label>
+                                        <select name="brand_id" class="form-control">
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">
+                                                    {{ $brand->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Tên Sản Phẩm</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ old('name') }}">
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Mã Sản Phẩm</label>
+                                        <input type="text" name="sku" class="form-control"
+                                            value="{{ old('sku') }}">
+                                        @error('sku')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Slug</label>
+                                        <input type="text" name="slug" class="form-control"
+                                            value="{{ old('slug') }}">
+                                        @error('slug')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Giá</label>
+                                        <input type="text" name="price" class="form-control">
+                                        @error('price')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Mô tả</label>
+                                        <textarea class="form-control" id="summernote" rows="6" name="description">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">Ảnh </label>
+                                        <input class="form-control" type="file" name="product_images[]" multiple>
+                                        @error('product_images')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label mr-5">Trạng thái</label>
+                                        <input type="radio" name="is_active" id="" value="1"> Hoạt Động
+                                        <input type="radio" name="is_active" id="" value="0"> Không Hoạt
+                                        Động
+                                        @error('is_active')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-dark">Thêm</button>
+                                    </div>
+
+                                </form>
+                            </div>
 
                         </div>
 

@@ -17,16 +17,12 @@ class CheckActiveStatus
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-         
-            if (Auth::check() && Auth::user()->active === 0) {
+            if (Auth::user()->active === 0) {
                 Auth::logout();
                 return redirect()->route('account')->with('error', 'Your account has been banned');
             }
         }
         
         return $next($request);
-        
-
-      
     }
 }

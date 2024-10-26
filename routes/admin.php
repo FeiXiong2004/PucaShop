@@ -1,15 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashBoardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\authAccountController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Models\Category;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +21,24 @@ use App\Models\Category;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/admin',[DashboardController::class,'index'])->name('admin.dashboard');
 
 
 //Admin routes
-Route::middleware(AdminMiddleware::class)->prefix('admin')->as('admin.')->group(function () {
+// Route::middleware(AdminMiddleware::class)->prefix('admin')
+Route::prefix('admin')->as('admin.')->group(function () {
    // Dashboard
    Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
+   //Brand
+   Route::prefix('brand')->as('brand.')->group(function () {
+      Route::get("/list", [BrandController::class, "index"]);
+      Route::get("/create", [BrandController::class, "create"])->name('create');
+      Route::post("/create", [BrandController::class, "store"])->name('store');
+      Route::get("/edit/{id}", [BrandController::class, "edit"])->name('edit');
+      Route::put("/edit/{id}", [BrandController::class, "update"])->name('update');
+      Route::delete("/destroy/{id}", [BrandController::class, "destroy"])->name('destroy');
+      Route::post('/changeStatus/{id}', [BrandController::class, 'changeStatus'])->name('changeStatus');
+   });
    //Category
    Route::prefix('category')->as('category.')->group(function () {
       Route::get("/list", [CategoryController::class, "index"]);
@@ -35,6 +47,8 @@ Route::middleware(AdminMiddleware::class)->prefix('admin')->as('admin.')->group(
       Route::get("/edit/{id}", [CategoryController::class, "edit"])->name('edit');
       Route::put("/edit/{id}", [CategoryController::class, "update"])->name('update');
       Route::delete("/destroy/{id}", [CategoryController::class, "destroy"])->name('destroy');
+      Route::post('/changeStatus/{id}', [CategoryController::class, 'changeStatus'])->name('changeStatus');
+
    });
    //Product
    Route::prefix('product')->as('product.')->group(function () {

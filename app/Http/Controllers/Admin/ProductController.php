@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -11,19 +12,26 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        $productsAdmin=Product::paginate(10);
-        return view('admin.products.index',compact('productsAdmin'));
+      
+        $products=Product::paginate(10);
+        return view('admin.products.index',compact('products'));
     }
     public function create(){
-        return view('admin.products.create');
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('admin.products.create',compact('categories', 'brands'));
     }
     public function store(Request $request){
-        $data = $request->except('image');
-        $data['image'] = "";
-        if ($request->hasFile('image')) {
-            $path_image = $request->file('image')->store('images');
-            $data['image'] = $path_image;
-        }
+        $data = [
+            'name' => $request->name,
+            'sku' => $request->sku,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'price' => $request->price,
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'status' => $request->status,
+        ];
         Product::create($data);
         return redirect()->route('admin.product.')->with('message', 'Product created successfully');
     }

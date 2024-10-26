@@ -33,47 +33,59 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="container">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li >{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+
                                 <form action="{{ route('admin.post.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="" class="form-label">Title</label>
-                                        <input type="text" class="form-control" placeholder="title" name="title" value="{{ old('title') }}">
-                                        {{-- <span style="color: red">{{ $errors->title }}</span> --}}
+                                        <input type="text" class="form-control" placeholder="title" name="title"
+                                            value="{{ old('title') }}">
+                                        @error('title')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Nhập ảnh</label>
+                                        <label for="formFile" class="form-label">Image</label>
                                         <input class="form-control" type="file" id="formFile" name="image">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
+                                        <label for="formFile" class="form-label">Description</label>
                                         <textarea class="form-control" rows="3" name="description">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Content</label>
                                         <textarea class="form-control" rows="6" name="content">{{ old('content') }}</textarea>
+                                        @error('content')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">View</label>
                                         <input type="number" name="view" class="form-control" id="">
+                                        @error('view')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Category</label>
                                         <select name="cate_id" id="">
                                             @foreach ($categories as $cate)
-                                                <option value="{{ $cate->id }}" @if ($cate->id == old('cate_id')) selected        
-                                                @endif>
+                                                <option value="{{ $cate->id }}"
+                                                    @if ($cate->id == old('cate_id')) selected @endif>
                                                     {{ $cate->name }}
                                                 </option>
                                             @endforeach
+
                                         </select>
+                                        @error('category_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <button type="submit" class="btn btn-primary">Create</button>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'Product List')
+@section('title', 'Danh sách sản phẩm')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -27,7 +27,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Product List</h3>
+                                <h3 class="card-title">Danh sách sản phẩm</h3>
                             </div>
                             <div class="card-body">
                                 @if (session('message'))
@@ -38,13 +38,13 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Description</th>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Tên Sản Phẩm</th>
+                                            <th scope="col">Mã Sản Phẩm</th>
+                                            <th scope="col">Slug</th>
+                                            <th scope="col">Thương Hiệu</th>
                                             <th scope="col">Category</th>
+                                            <th scope="col">Trạng Thái</th>
                                             <th scope="col">
                                                 <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
                                                     Thêm mới
@@ -53,24 +53,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($productsAdmin as $pro)
+                                        @foreach ($products as $key=> $product)
                                             <tr>
-                                                <th scope="row">{{ $pro->id }}</th>
-                                                <td>{{ $pro->name }}</td>
-                                                <td>{{ $pro->price }}</td>
-                                                <td>
-                                                    <img src="{{ asset('/storage/') . '/' . $pro->image }}" width="200"
-                                                        alt="">
-                                                </td>
-                                                <td>{{ $pro->quantity }}</td>
-                                                <td>{!! $pro->description !!}</td>
-                                                <td>{{ $pro->category->name }}</td>
+                                                <th scope="row">{{ $product->id }}</th>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->sku }}</td>
+                                                <td>{{ $product->slug }}</td>
+                                                <td>{{ $product->brand->name }}</td>
+                                                <td>{{ $product->category->name }}</td>
                                                 <td class="d-flex">
-                                                    <a href="{{ route('admin.product.edit', $pro->id) }}"
+                                                    <a href="{{ route('admin.product.edit', $product->id) }}"
                                                         class="btn btn-primary mr-3">Edit</a>
-                                                    <a href="{{ route('admin.product.show', $pro->id) }}"
+                                                    <a href="{{ route('admin.product.show', $product->id) }}"
                                                         class="btn btn-warning mr-3">Show</a>
-                                                    <form action="{{ route('admin.product.destroy', $pro->id) }}"
+                                                    <form action="{{ route('admin.product.destroy', $product->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
@@ -83,7 +79,7 @@
 
                                     </tbody>
                                 </table>
-                                {{ $productsAdmin->links() }}
+                                {{ $products->links() }}
                             </div>
                         </div>
                         <!-- /.card -->

@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'Product Create')
+@section('title', 'Thêm sản phẩm')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product Create</h1>
+                        <h1>Thêm sản phẩm</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -27,49 +27,102 @@
                     <div class="card card-outline card-info">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Product Create
+                                Thêm sản phẩm
                             </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            
-                            <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Image</label>
-                                    <input class="form-control" type="file" id="formFile" name="image">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Category</label>
-                                    <select name="category_id" class="form-control">
-                                        @foreach ($categories as $cate)
-                                            <option value="{{ $cate->id }}">
-                                                {{ $cate->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Quantity</label>
-                                    <input class="form-control" type="number" name="quantity" value="0">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea id="summernote" rows="6" name="description"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-dark">Create</button>
-                                </div>
-                            </form>
+                            <div class="container">
+                                <form action="{{ route('admin.product.store') }}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <!-- Cột bên trái -->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Chọn danh mục </label>
+                                                <select name="category_id" class="form-control">
+                                                    @foreach ($categories as $cate)
+                                                        <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Chọn thương hiệu </label>
+                                                <select name="brand_id" class="form-control">
+                                                    @foreach ($brands as $brand)
+                                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên Sản Phẩm</label>
+                                                <input type="text" name="name" class="form-control"
+                                                    value="{{ old('name') }}">
+                                                @error('name')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mã Sản Phẩm</label>
+                                                <input type="text" name="sku" class="form-control"
+                                                    value="{{ old('sku') }}">
+                                                @error('sku')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Ảnh</label>
+                                                <input class="form-control" type="file" name="product_images[]" multiple>
+                                                @error('product_images')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
 
+                                        <!-- Cột bên phải -->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Slug</label>
+                                                <input type="text" name="slug" class="form-control"
+                                                    value="{{ old('slug') }}">
+                                                @error('slug')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Giá</label>
+                                                <input type="text" name="price" class="form-control">
+                                                @error('price')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mô tả</label>
+                                                <textarea class="form-control" id="summernote" rows="4" name="description">{{ old('description') }}</textarea>
+                                                @error('description')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Trạng thái</label>
+                                                <input type="radio" name="is_active" value="1"> Hoạt Động
+                                                <input type="radio" name="is_active" value="0"> Không Hoạt Động
+                                                @error('is_active')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hàng cuối: trạng thái và nút thêm -->
+                                   
+                                    <div class="mb-3 text-center">
+                                        <button type="submit" class="btn btn-dark">Thêm</button>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
 
                     </div>

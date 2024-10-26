@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PostRequest;
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
@@ -23,7 +24,7 @@ class PostController extends Controller
 
         return view('admin.posts.create');
     }
-    public function store(CreatePostRequest $request)
+    public function store(Request $request)
     {  
        
         $data = $request->except('image');

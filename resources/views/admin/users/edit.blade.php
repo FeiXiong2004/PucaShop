@@ -40,35 +40,54 @@
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
                                     <input type="text" name="fullname" class="form-control"
-                                        value="{{ $user->fullname }}" required>
+                                        value="{{ $user->fullname }}">
+                                    @error('fullname')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">User Name</label>
                                     <input type="text" name="username" class="form-control"
-                                        value="{{ $user->username }}" required> 
+                                        value="{{ $user->username }}">
+                                    @error('username')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control">
+                                    @error('password')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Hình</label>
+                                    <label class="form-label">Avatar</label>
                                     <input class="form-control" type="file" id="formFile" name="avatar">
                                     <br><img src="{{ asset('storage/' . $user->image) }}" width="60" alt="">
+                                    @error('fullname')
+                                        <div class="text-danger">{{ $avatar }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Role</label>
-                                    <select class="form-selected"  name="role">
-                                        <option  value="admin">Admin</option>
+                                    <select class="form-selected" name="role">
+                                        <option value="admin">Admin</option>
                                         <option value="user   ">User</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Active</label>
-                                    <select class="form-selected"  name="active">
-                                        <option @selected($user->active == 1 ) value="1">Active </option>
-                                        <option @selected($user->active == 0 ) value="0">In_Active</option>
+                                    <select class="form-selected" name="active">
+                                        <option @selected($user->active == 1) value="1">Active </option>
+                                        <option @selected($user->active == 0) value="0">In_Active</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">

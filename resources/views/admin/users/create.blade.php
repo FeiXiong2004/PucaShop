@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'User Update')
+@section('title', 'User Create')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>User Update</h1>
+                        <h1>User Create</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -27,52 +27,63 @@
                     <div class="card card-outline card-info">
                         <div class="card-header">
                             <h3 class="card-title">
-                                User Update
+                                User Create
                             </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <form action="{{ route('admin.user.store') }}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('admin.user.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                            
+
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" name="fullname" class="form-control" required
-                                      >
+                                    <input type="text" name="fullname" class="form-control" >
+                                    @error('fullname')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">User Name</label>
-                                    <input type="text" name="username" class="form-control" required
-                                        >
+                                    <input type="text" name="username" class="form-control" >
+                                    @error('username')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="password" name="password" class="form-control" >
+                                    @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" required>
+                                    <input type="email" name="email" class="form-control" >
+                                    @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Hình</label>
+                                    <label class="form-label">Avatar</label>
                                     <input class="form-control" type="file" id="formFile" name="avatar">
-                                   
+                                    @error('avatar')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Role</label>
-                                    <select class="form-selected"  name="role" required>
-                                        <option  value="admin">Admin</option>
+                                    <select class="form-selected" name="role" >
+                                        <option value="admin">Admin</option>
                                         <option value="user   ">User</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Active</label>
-                                    <select class="form-selected"  name="active" required>
-                                        <option  value="1">Hoạt Động </option>
-                                        <option  value="0">Không Hoạt Động</option>
+                                    <select class="form-selected" name="active" >
+                                        <option value="1">Hoạt Động </option>
+                                        <option value="0">Không Hoạt Động</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 // Auth
     Route::get('/account', [authAccountController::class, 'index'])->name('account');
     Route::post('/handleRegister', [authAccountController::class, 'handleRegister'])->name('handleRegister');
@@ -42,34 +43,34 @@ use Illuminate\Support\Facades\Route;
 
 //Home
 Route::get('/', function () {
-    return view('home');
+    return view('client.index');
 });
 Route::get('/home', function () {
-    return view('home');
+    return view('client.index');
 })->name('home');
-//Shop
-Route::get('/shop/{category_id?}', function ($category_id = null) {
-    return view('shop', compact('category_id'));
-})->name('shop');
-//Product Detail
-Route::get('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
-//Blog
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
-//Blog Detail
-Route::get('/blog/{id}', [HomeController::class, 'blogDetail'])->name('blogDetail');
-//Contact
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+// //Shop
+// Route::get('/shop/{category_id?}', function ($category_id = null) {
+//     return view('shop', compact('category_id'));
+// })->name('shop');
+// //Product Detail
+// Route::get('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+// //Blog
+// Route::get('/blog', function () {
+//     return view('blog');
+// })->name('blog');
+// //Blog Detail
+// Route::get('/blog/{id}', [HomeController::class, 'blogDetail'])->name('blogDetail');
+// //Contact
+// Route::get('/contact', function () {
+//     return view('contact');
+// })->name('contact');
 
-//Comments
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::middleware(['auth'])->group(function () {
-    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
-});
+// //Comments
+// Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+// Route::middleware(['auth'])->group(function () {
+//     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+// });
 
-//Contact 
-Route::get('/contact', [ContactController::class, 'create'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+// //Contact 
+// Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+// Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
